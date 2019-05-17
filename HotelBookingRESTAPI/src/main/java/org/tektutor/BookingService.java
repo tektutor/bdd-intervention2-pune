@@ -1,9 +1,3 @@
-package org.tektutor;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.PreparedStatement;
-
 import java.util.ArrayList;
 
 public class BookingService {
@@ -13,9 +7,11 @@ public class BookingService {
     private String sqlQuery;
 
     public BookingService() {
-        connection = new DatabaseConnectionManager().getConnection();
         listOfBookings = new ArrayList<Booking>();
+    }
 
+    public ArrayList<Booking> getAllBookings() {
+        connection = new DatabaseConnectionManager().getConnection();
         sqlQuery = "select * from Booking";
 
         Booking booking = null;
@@ -23,7 +19,7 @@ public class BookingService {
         try {
             PreparedStatement statement = connection.prepareStatement(sqlQuery);
             ResultSet rs = statement.executeQuery();
-            
+
             while ( rs.next() ) {
                 booking = new Booking();
 
@@ -40,11 +36,7 @@ public class BookingService {
         catch( Exception e ) {
             e.printStackTrace();
         }
-
-    }
-
-    public ArrayList<Booking> getAllBookings() {
-        return listOfBookings;        
+        return listOfBookings;
     }
 
 }
