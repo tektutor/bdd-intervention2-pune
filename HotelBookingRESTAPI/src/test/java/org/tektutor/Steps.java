@@ -1,6 +1,6 @@
 package org.tektutor;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -16,7 +16,7 @@ public class Steps {
     private Response response;
     private int actualResponseCode, expectedResponseCode;
 
-    @Given("I the rest api is hosted at {string}")
+    @Given("the rest api is hosted at {string}")
     public void i_the_rest_api_is_hosted_at(String url) {
         RestAssured.baseURI = url;
 		request = RestAssured.given();
@@ -47,5 +47,14 @@ public class Steps {
         assertEquals(expectedRecordCount, actualRecordCount);
 
     }
+	
+    @Then("I expect {string} booking record as response")
+    public void check_if_the_record_count_matches( String strExpectedRecordCount ) {
 
+        Booking booking = response.as(Booking.class);
+
+        assertNotNull(booking);
+
+    }
+	
 }
