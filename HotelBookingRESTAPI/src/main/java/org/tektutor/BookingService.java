@@ -1,5 +1,8 @@
 package org.tektutor;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 public class BookingService {
