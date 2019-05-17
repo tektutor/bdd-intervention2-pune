@@ -18,5 +18,12 @@ public class BookingController {
     public ArrayList<Booking> getAllBookings() {
         return bookingService.getAllBookings();
     }
+    
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
+    @Path("{id}")
+    public Booking getBookingById(@PathParam("id") int id) {
+        return bookingService.getBookingById(id);
+    }
 
 }
